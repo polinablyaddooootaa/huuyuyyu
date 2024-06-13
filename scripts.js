@@ -1,78 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    checkLoginStatus();
-    loadNotes();
-});
-
-function checkLoginStatus() {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
         document.getElementById('authButtons').style.display = 'none';
-        document.getElementById('userActions').style.display = 'flex';
+        document.getElementById('userActions').style.display = 'block';
         document.getElementById('usernameDisplay').textContent = currentUser;
+        loadNotes(currentUser);
     } else {
-        document.getElementById('authButtons').style.display = 'flex';
+        document.getElementById('authButtons').style.display = 'block';
         document.getElementById('userActions').style.display = 'none';
     }
-}
+});
 
-function register() {
-    const username = document.getElementById('registerUsername').value;
-    const password = document.getElementById('registerPassword').value;
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    if (users.find(user => user.username === username)) {
-        alert('Пользователь с таким именем уже существует.');
-        return;
-    }
-
-    users.push({ username, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    closeModal('registerModal');
-    alert('Регистрация прошла успешно.');
-}
-
-function login() {
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const user = users.find(user => user.username === username && user.password === password);
-    if (user) {
-        localStorage.setItem('currentUser', username);
-        closeModal('loginModal');
-        checkLoginStatus();
-    } else {
-        alert('Неверное имя пользователя или пароль.');
-    }
-}
-
-function logout() {
-    localStorage.removeItem('currentUser');
-    checkLoginStatus();
-}
-
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
-// Functions for loading, adding, editing, and deleting notes remain the same
-function loadNotes() {
+function loadNotes(username) {
     const notesContainer = document.getElementById('notes-container');
-    if (notesContainer) {
-        notesContainer.innerHTML = '';
+    notesContainer.innerHTML = '';
 
-        const notes = getNotesFromLocalStorage();
-        notes.forEach((note, index) => {
-            const noteElement = createNoteElement(note, index);
-            notesContainer.appendChild(noteElement);
-        });
-    }
+    const notes = JSON.parse(localStorage.getItem(`notes_${username}`)) || [];
+
+    notes.forEach((note, index) => {
+        const noteElement = createNoteElement(note, index);
+        notesContainer.appendChild(noteElement);
+    });
 }
 
 function createNoteElement(note, index) {
@@ -106,26 +54,34 @@ function createNoteElement(note, index) {
 }
 
 function addNote() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+        alert('Вы должны войти, чтобы добавить заметку.');
+        return;
+    }
+
     const titleInput = document.getElementById('note-title');
     const contentInput = document.getElementById('note-content');
+
+    const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
 
     const newNote = {
         title: titleInput.value,
         content: `<p>${contentInput.value.replace(/\n/g, '</p><p>')}</p>`
     };
 
-    const notes = getNotesFromLocalStorage();
     notes.push(newNote);
-    saveNotesToLocalStorage(notes);
+    localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
+
+    loadNotes(currentUser);
 
     titleInput.value = '';
     contentInput.value = '';
-
-    loadNotes();
 }
 
 function editNote(index) {
-    const notes = getNotesFromLocalStorage();
+    const currentUser = localStorage.getItem('currentUser');
+    const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
     const note = notes[index];
 
     const titleInput = document.getElementById('note-title');
@@ -142,15 +98,20 @@ function editNote(index) {
 }
 
 function saveEditedNote(index) {
-    const notes = getNotesFromLocalStorage();
-
+    const currentUser = localStorage.getItem('currentUser');
     const titleInput = document.getElementById('note-title');
     const contentInput = document.getElementById('note-content');
 
-    notes[index].title = titleInput.value;
-    notes[index].content = `<p>${contentInput.value.replace(/\n/g, '</p><p>')}</p>`;
+    const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
 
-    saveNotesToLocalStorage(notes);
+    notes[index] = {
+        title: titleInput.value,
+        content: `<p>${contentInput.value.replace(/\n/g, '</p><p>')}</p>`
+    };
+
+    localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
+
+    loadNotes(currentUser);
 
     titleInput.value = '';
     contentInput.value = '';
@@ -158,21 +119,64 @@ function saveEditedNote(index) {
     const addButton = document.querySelector('#note-form button');
     addButton.textContent = 'Добавить';
     addButton.onclick = addNote;
-
-    loadNotes();
 }
 
 function deleteNote(index) {
-    const notes = getNotesFromLocalStorage();
+    const currentUser = localStorage.getItem('currentUser');
+    const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
+
     notes.splice(index, 1);
-    saveNotesToLocalStorage(notes);
-    loadNotes();
+    localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
+
+    loadNotes(currentUser);
 }
 
-function getNotesFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('notes')) || [];
+function register() {
+    const username = document.getElementById('registerUsername').value;
+    const password = document.getElementById('registerPassword').value;
+
+    if (localStorage.getItem(username)) {
+        alert('Пользователь уже существует.');
+        return;
+    }
+
+    localStorage.setItem(username, JSON.stringify({ password }));
+    alert('Регистрация успешна! Теперь вы можете войти.');
+    closeModal('registerModal');
 }
 
-function saveNotesToLocalStorage(notes) {
-    localStorage.setItem('notes', JSON.stringify(notes));
+function login() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+
+    const user = JSON.parse(localStorage.getItem(username));
+
+    if (user && user.password === password) {
+        localStorage.setItem('currentUser', username);
+        alert('Вход выполнен успешно!');
+        document.getElementById('authButtons').style.display = 'none';
+        document.getElementById('userActions').style.display = 'block';
+        document.getElementById('usernameDisplay').textContent = username;
+        loadNotes(username);
+        closeModal('loginModal');
+    } else {
+        alert('Неправильное имя пользователя или пароль.');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    alert('Вы вышли из системы.');
+    document.getElementById('authButtons').style.display = 'block';
+    document.getElementById('userActions').style.display = 'none';
+    document.getElementById('notes-container').innerHTML = '';
+    document.getElementById('usernameDisplay').textContent = '';
+}
+
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
 }

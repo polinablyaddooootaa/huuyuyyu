@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,6 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Add star elements here -->
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
@@ -95,30 +94,29 @@
         <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
     </div>
     <div id="welcomeMessage" style="display: none;">Добро пожаловать, <span id="usernameDisplay"></span>!</div>
-</header>
 
- <!-- Registration Modal -->
- <div id="registerModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('registerModal')">&times;</span>
-        <h2>Регистрация</h2>
-        <input type="text" id="registerUsername" placeholder="Имя пользователя" required>
-        <input type="password" id="registerPassword" placeholder="Пароль" required>
-        <button onclick="register()">Зарегистрироваться</button>
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Регистрация</h2>
+            <input type="text" id="registerUsername" placeholder="Имя пользователя" required>
+            <input type="password" id="registerPassword" placeholder="Пароль" required>
+            <button onclick="register()">Зарегистрироваться</button>
+        </div>
     </div>
-</div>
 
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <h2>Вход</h2>
-        <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
-        <input type="password" id="loginPassword" placeholder="Пароль" required>
-        <button onclick="login()">Войти</button>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Вход</h2>
+            <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
+            <input type="password" id="loginPassword" placeholder="Пароль" required>
+            <button onclick="login()">Войти</button>
+        </div>
     </div>
-</div>
-</div>
-<script src="scripts.js"></script>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
