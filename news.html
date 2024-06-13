@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stud & Book - Новости</title>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="qq">
+            <img class="logo22" src="images/logo.png" alt="1">
+            <div class="logo">Stud & Book</div>
+        </div>
+        <div class="gg">
+            <a href="index.html"><button class="header1">Главная</button></a>
+            <a href="notes.html"><button class="header1">Заметки</button></a>
+            <a href="schedule.html"><button class="header1">Расписание</button></a>
+            <a href="news.html"><button class="header1">Новости</button></a>
+        </div>
+        <button id="logoutBtn" class="auth-btn" style="display: none;" onclick="logout()">Выход</button>
+        <button class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
+        <button class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+    </header>
+    <section class="main-content">
+        <div class="content-header">
+            <h1>Новости</h1>
+            <p>Последние обновления и события</p>
+        </div>
+        <div class="news-content">
+            <!-- Новости будут здесь -->
+            <p>Здесь будут отображаться новости.</p>
+        </div>
+    </section>
+    <footer>
+        <button class="join-btn">Присоединиться</button>
+        <p>Ваш успех — наша главная цель!</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

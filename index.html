@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stud & Book</title>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Add star elements here -->
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    
+    <header>
+        <div class="qq">
+            <img class="logo22" src="images/logo.png" alt="1">
+            <div class="logo">Stud & Book</div>
+        </div>
+        <div class="gg">
+            <button class="header1" onclick="scrollToInfo()">О сайте</button>
+            <a href="notes.html"><button class="header1">Заметки</button></a>
+            <a href="schedule.html"><button class="header1">Расписание</button></a>
+            <a href="news.html"><button class="header1">Новости</button></a>
+        </div>
+        <div id="authButtons">
+            <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
+            <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+        </div>
+        <div id="userActions" style="display: none;">
+            <span id="usernameDisplay"></span>
+            <button id="logoutBtn" class="auth-btn" onclick="logout()">Выход</button>
+        </div>
+    </header>
+    
+    <section class="main-content">
+        <div class="ass">
+            <div class="mainlogo"><img src="images/logo2.png" alt=""></div>
+            <div class="intro">
+                <h1>STUD & BOOK</h1>
+                <p>сайт - помощник для студентов</p>
+                <button class="join-btn">Присоединиться</button>
+            </div>
+        </div>
+        <div class="center">
+            <section class="mission">
+                <p class="mission-text">Наша миссия – помочь вам раскрыть свой потенциал, улучшить результаты и превратить учебный процесс в увлекательное и продуктивное занятие.</p>
+                <div class="features">
+                    <div class="feature">
+                        <img src="images/расписание.png">
+                        <p>Удобная система расписания</p>
+                    </div>
+                    <div class="feature">
+                        <div class="icon"><img src="images/заметки.png"></div>
+                        <p>Добавление заметок</p>
+                    </div>
+                    <div class="feature">
+                        <div class="icon"><img src="images/файлы.png"></div>
+                        <p>Загрузка файлов</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <div class="center" id="infoSection">
+        <section class="info-section">
+            <div class="info-text">
+                <p class="litext">На нашем сайте предоставлены:</p>
+                <ul class="ultext">
+                    <li class="litext">Разнообразные учебные материалы по всем основным предметам.</li>
+                    <li class="litext">Удобные инструменты для планирования и управления временем.</li>
+                    <li class="litext">Советы и стратегии по эффективному обучению.</li>
+                    <li class="litext">Онлайн-тесты и задания для самопроверки.</li>
+                </ul>
+            </div>
+            <img class="man" src="images/Group 2.png" alt="Student Image">
+        </section>
+    </div>
+    
+    <div class="center">
+        <footer class="footer">
+            <div>
+                <p class="footertext">Этот сайт создан студентами для студентов, и мы гордимся тем, что можем помочь вам в достижении ваших образовательных и профессиональных целей. Присоединяйтесь к нашему сообществу и давайте вместе строить успешное будущее!</p>
+            </div>
+            <button class="join-btn">Присоединиться</button>
+            <p class="footertext2">Ваш успех — наша главная цель!</p>
+        </footer>
+    </div>
+    <div id="authButtons">
+        <button id="logoutBtn" class="auth-btn" style="display: none;" onclick="logout()">Выход</button>
+        <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
+        <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+    </div>
+    <div id="welcomeMessage" style="display: none;">Добро пожаловать, <span id="usernameDisplay"></span>!</div>
+</header>
+
+ <!-- Registration Modal -->
+ <div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('registerModal')">&times;</span>
+        <h2>Регистрация</h2>
+        <input type="text" id="registerUsername" placeholder="Имя пользователя" required>
+        <input type="password" id="registerPassword" placeholder="Пароль" required>
+        <button onclick="register()">Зарегистрироваться</button>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('loginModal')">&times;</span>
+        <h2>Вход</h2>
+        <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
+        <input type="password" id="loginPassword" placeholder="Пароль" required>
+        <button onclick="login()">Войти</button>
+    </div>
+</div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
