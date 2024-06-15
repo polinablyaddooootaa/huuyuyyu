@@ -6,12 +6,12 @@
     <title>Stud & Book - Новости</title>
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="news.css">
 </head>
 <body>
     <header>
         <div class="qq">
-            <img class="logo22" src="images/logo.png" alt="1">
+            <img class="logo22" src="logo.png" alt="1">
             <div class="logo">Stud & Book</div>
         </div>
         <div class="gg">
@@ -20,9 +20,14 @@
             <a href="schedule.html"><button class="header1">Расписание</button></a>
             <a href="news.html"><button class="header1">Новости</button></a>
         </div>
-        <button id="logoutBtn" class="auth-btn" style="display: none;" onclick="logout()">Выход</button>
-        <button class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
-        <button class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+        <div id="authButtons">
+            <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
+            <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+        </div>
+        <div id="userActions" style="display: none;">
+            <span id="usernameDisplay"></span>
+            <button id="logoutBtn" class="auth-btn" onclick="logout()">Выход</button>
+        </div>
     </header>
     <section class="main-content">
         <div class="content-header">
@@ -30,14 +35,58 @@
             <p>Последние обновления и события</p>
         </div>
         <div class="news-content">
-            <!-- Новости будут здесь -->
-            <p>Здесь будут отображаться новости.</p>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 1">
+                    <p>Подпись 1</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 2">
+                    <p>Подпись 2</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 3">
+                    <p>Подпись 3</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 4">
+                    <p>Подпись 4</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 5">
+                    <p>Подпись 5</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 6">
+                    <p>Подпись 6</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 7">
+                    <p>Подпись 7</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 8">
+                    <p>Подпись 8</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 9">
+                    <p>Подпись 9</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 10">
+                    <p>Подпись 10</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/150" alt="Фото 11">
+                    <p>Подпись 11</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://brest.kbp.by/wp-content/uploads/2024/06/image1-3.jpeg" alt="Фото 12">
+                    <p>Подпись 12</p>
+                </div>
+            </div>
         </div>
     </section>
-    <footer>
-        <button class="join-btn">Присоединиться</button>
-        <p>Ваш успех — наша главная цель!</p>
-    </footer>
 
     <script src="scripts.js"></script>
 </body>

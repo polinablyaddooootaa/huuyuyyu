@@ -1,20 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = localStorage.getItem('currentUser');
+    const authButtons = document.getElementById('authButtons');
+    const userActions = document.getElementById('userActions');
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    
     if (currentUser) {
-        document.getElementById('authButtons').style.display = 'none';
-        document.getElementById('userActions').style.display = 'block';
-        document.getElementById('usernameDisplay').textContent = currentUser;
+        if (authButtons) authButtons.style.display = 'none';
+        if (userActions) userActions.style.display = 'block';
+        if (usernameDisplay) usernameDisplay.textContent = currentUser;
         loadNotes(currentUser);
     } else {
-        document.getElementById('authButtons').style.display = 'block';
-        document.getElementById('userActions').style.display = 'none';
+        if (authButtons) authButtons.style.display = 'block';
+        if (userActions) userActions.style.display = 'none';
     }
 });
+function scrollToInfo() {
+    const infoSection = document.getElementById('infoSection');
+    if (infoSection) {
+        infoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 
 function loadNotes(username) {
     const notesContainer = document.getElementById('notes-container');
-    notesContainer.innerHTML = '';
+    if (!notesContainer) return;
 
+    notesContainer.innerHTML = '';
     const notes = JSON.parse(localStorage.getItem(`notes_${username}`)) || [];
 
     notes.forEach((note, index) => {
@@ -154,9 +165,14 @@ function login() {
     if (user && user.password === password) {
         localStorage.setItem('currentUser', username);
         alert('Вход выполнен успешно!');
-        document.getElementById('authButtons').style.display = 'none';
-        document.getElementById('userActions').style.display = 'block';
-        document.getElementById('usernameDisplay').textContent = username;
+        const authButtons = document.getElementById('authButtons');
+        const userActions = document.getElementById('userActions');
+        const usernameDisplay = document.getElementById('usernameDisplay');
+
+        if (authButtons) authButtons.style.display = 'none';
+        if (userActions) userActions.style.display = 'block';
+        if (usernameDisplay) usernameDisplay.textContent = username;
+
         loadNotes(username);
         closeModal('loginModal');
     } else {
@@ -167,16 +183,23 @@ function login() {
 function logout() {
     localStorage.removeItem('currentUser');
     alert('Вы вышли из системы.');
-    document.getElementById('authButtons').style.display = 'block';
-    document.getElementById('userActions').style.display = 'none';
-    document.getElementById('notes-container').innerHTML = '';
-    document.getElementById('usernameDisplay').textContent = '';
+    const authButtons = document.getElementById('authButtons');
+    const userActions = document.getElementById('userActions');
+    const notesContainer = document.getElementById('notes-container');
+    const usernameDisplay = document.getElementById('usernameDisplay');
+
+    if (authButtons) authButtons.style.display = 'block';
+    if (userActions) userActions.style.display = 'none';
+    if (notesContainer) notesContainer.innerHTML = '';
+    if (usernameDisplay) usernameDisplay.textContent = '';
 }
 
 function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'block';
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'none';
 }

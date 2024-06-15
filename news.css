@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    background: linear-gradient(to right, #00001A 20%, #00001A 40%, #1B0036 60%, #2D0050 80%, #58306b 100%, #67327f 100%);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: Handjet;
+}
+
+.qq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo22 {
+    width: 60px;
+    height: 60px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.gg {
+    display: flex;
+    gap: 50px;
+}
+
+.header1 {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-size: 20px;
+    font-family: Montserrat;
+    color: white;
+}
+
+.header1:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+header .auth-btn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+    font-family: Montserrat;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+header .auth-btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.main-content {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.content-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.content-header h1 {
+    font-family: 'Handjet', sans-serif;
+    font-size: 36px;
+}
+
+.content-header p {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 18px;
+}
+
+.news-content {
+    text-align: center;
+    padding: 20px;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 16px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.photo-item {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.photo-item p {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 16px;
+    color: #fff;
+}

@@ -9,9 +9,11 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
+    <section class="wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+</section>
     
     <header>
         <div class="qq">
@@ -99,10 +101,12 @@
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('registerModal')">&times;</span>
-            <h2>Регистрация</h2>
-            <input type="text" id="registerUsername" placeholder="Имя пользователя" required>
-            <input type="password" id="registerPassword" placeholder="Пароль" required>
-            <button onclick="register()">Зарегистрироваться</button>
+            <div class="ads">
+                <h2 class="text">Регистрация пользователя</h2>
+                <input type="text" class="input" id="registerUsername" placeholder="Имя пользователя" required>
+                <input type="password" class="input" id="registerPassword" placeholder="Пароль" required>
+                <button onclick="register()" class="reg">Зарегистрироваться</button>
+            </div>
         </div>
     </div>
 
@@ -110,10 +114,12 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <div class="ads">
             <h2>Вход</h2>
-            <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
-            <input type="password" id="loginPassword" placeholder="Пароль" required>
-            <button onclick="login()">Войти</button>
+            <input type="text" class="input" id="loginUsername" placeholder="Имя пользователя" required>
+            <input type="password" class="input" id="loginPassword" placeholder="Пароль" required>
+            <button onclick="login()" class="reg">Войти</button>
+        </div>
         </div>
     </div>
 

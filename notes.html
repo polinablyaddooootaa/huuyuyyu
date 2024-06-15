@@ -4,19 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заметки</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="notes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="notes-container">
+    <header>
+        <div class="qq">
+            <img class="logo22" src="logo.png" alt="1">
+            <div class="logo">Stud & Book</div>
+        </div>
+        <div class="gg">
+            <a href="index.html"><button class="header1">Главная</button></a>
+            <a href="notes.html"><button class="header1">Заметки</button></a>
+            <a href="schedule.html"><button class="header1">Расписание</button></a>
+            <a href="news.html"><button class="header1">Новости</button></a>
+        </div>
+        <div id="authButtons">
+            <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
+            <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+        </div>
+        <div id="userActions" style="display: none;">
+            <span id="usernameDisplay"></span>
+            <button id="logoutBtn" class="auth-btn" onclick="logout()">Выход</button>
+        </div>
+    </header>
+    <div class="notesblocks">
+        <div id="notes-container">
     
+        </div>
+        
+        <div id="note-form">
+            <h3>Добавить новую заметку</h3>
+            <input type="text" id="note-title" placeholder="Заголовок" required>
+            <textarea id="note-content" placeholder="Содержание"></textarea>
+            <button onclick="addNote()">Добавить</button>
+        </div>
     </div>
     
-    <div id="note-form">
-        <h3>Добавить новую заметку</h3>
-        <input type="text" id="note-title" placeholder="Заголовок" required>
-        <textarea id="note-content" placeholder="Содержание"></textarea>
-        <button onclick="addNote()">Добавить</button>
-    </div>
 
     <script src="scripts.js"></script>
 </body>

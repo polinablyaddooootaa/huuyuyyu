@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    background: linear-gradient(to right, #00001A 20%, #00001A 40%, #1B0036 60%, #2D0050 80%, #58306b 100%, #67327f 100%);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.note {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.title {
+    background-color: #000000;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.content {
+    display: none;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(180, 178, 178);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo22 {
+    width: 60px;
+    height: 60px;
+}
+
+.qq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: Handjet;
+}
+
+.header1 {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-size: 20px;
+    font-family: Montserrat;
+    color: white;
+}
+
+.header1:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.gg {
+    display: flex;
+    gap: 50px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .auth-btn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+    font-family: Montserrat;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+header .auth-btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+#note-form {
+    margin-top: 20px;
+}
+
+#note-form input, #note-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#note-form button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#note-form button:hover {
+    background-color: #218838;
+}
+
+.note .actions {
+    margin-top: 10px;
+}
+
+.note .actions button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.note .actions .edit {
+    background-color: #ffc107;
+}
+
+.note .actions .delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.note .actions .save {
+    background-color: #28a745;
+    color: white;
+}
+
+.note .actions .cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.notesblocks {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#notes-container {
+    display: flex;
+    flex-direction: column;
+}
