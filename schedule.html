@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="schedule.css">
-   
+    <script defer src="schedule.js"></script>
 </head>
 <body>
     <header>
@@ -34,81 +34,20 @@
         <div class="content-header">
             <h1>Расписание</h1>
             <p>Планируйте своё время эффективно</p>
-            <button class="group-button" onclick="toggleGroupList()">Выбор учебной группы</button>
-            <div class="group-list" id="groupList">
-                <!-- Кнопки для выбора учебной группы -->
-                <button class="selectGroup" onclick="selectGroup('T-191')">T-191</button>
-                <button class="selectGroup" onclick="selectGroup('T-192')">T-192</button>
-                <button class="selectGroup" onclick="selectGroup('T-193')">T-193</button>
-            </div>
         </div>
-        <div class="schedule-content">
-            <p id="selectedGroup">Выберите учебную группу</p>
-            <div class="schedule-table" id="scheduleTable">
-                <!-- Расписание будет здесь -->
-            </div>
+        <div>
+            <label for="groupSelect">Выберите группу:</label>
+            <select id="groupSelect" onchange="loadSchedule()">
+                <option value="">--Выберите группу--</option>
+                <option value="group1">Группа 1</option>
+                <option value="group2">Группа 2</option>
+                <option value="group3">Группа 3</option>
+            </select>
         </div>
+        <div id="scheduleContainer"></div>
     </section>
     <footer>
         <p>Ваш успех — наша главная цель!</p>
     </footer>
-
-    <script>
-        function toggleGroupList() {
-            const groupList = document.getElementById('groupList');
-            groupList.style.display = groupList.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function selectGroup(group) {
-            document.getElementById('selectedGroup').innerText = `Расписание для группы ${group}`;
-            loadSchedule(group);
-            toggleGroupList();
-        }
-
-        function loadSchedule(group) {
-            const scheduleTable = document.getElementById('scheduleTable');
-            scheduleTable.innerHTML = ''; // Очистить текущее расписание
-
-            const scheduleData = {
-                'T-191': {
-                    'Понедельник': ['Лекция 1', 'Практика 1'],
-                    'Вторник': ['Лекция 2', 'Практика 2'],
-                    'Среда': ['Лекция 3', 'Практика 3'],
-                    'Четверг': ['Лекция 4', 'Практика 4'],
-                    'Пятница': ['Лекция 5', 'Практика 5'],
-                },
-                'T-192': {
-                    'Понедельник': ['Лекция 1', 'Практика 1'],
-                    'Вторник': ['Лекция 2', 'Практика 2'],
-                    'Среда': ['Лекция 3', 'Практика 3'],
-                    'Четверг': ['Лекция 4', 'Практика 4'],
-                    'Пятница': ['Лекция 5', 'Практика 5'],
-                },
-                'T-193': {
-                    'Понедельник': ['Лекция 1', 'Практика 1'],
-                    'Вторник': ['Лекция 2', 'Практика 2'],
-                    'Среда': ['Лекция 3', 'Практика 3'],
-                    'Четверг': ['Лекция 4', 'Практика 4'],
-                    'Пятница': ['Лекция 5', 'Практика 5'],
-                }
-            };
-
-            const groupSchedule = scheduleData[group];
-
-            for (const day in groupSchedule) {
-                const dayColumn = document.createElement('div');
-                dayColumn.className = 'day-column';
-                const dayTitle = document.createElement('h3');
-                dayTitle.innerText = day;
-                dayColumn.appendChild(dayTitle);
-                groupSchedule[day].forEach(event => {
-                    const eventItem = document.createElement('p');
-                    eventItem.innerText = event;
-                    dayColumn.appendChild(eventItem);
-                });
-                scheduleTable.appendChild(dayColumn);
-            }
-        }
-    </script>
 </body>
 </html>
