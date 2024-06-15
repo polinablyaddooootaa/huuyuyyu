@@ -1,34 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('groupSelect').addEventListener('change', loadSchedule);
-});
+async function initSqlJs() {
+    const SQL = await initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.wasm` });
+    return SQL;
+}
+
+async function loadDatabase() {
+    const response = await fetch('schedule.db');
+    const buffer = await response.arrayBuffer();
+    return new Uint8Array(buffer);
+}
 
 async function loadSchedule() {
     const group = document.getElementById('groupSelect').value;
-    const scheduleContainer = document.getElementById('scheduleContainer');
-
     if (!group) {
-        scheduleContainer.innerHTML = '<p>Пожалуйста, выберите группу.</p>';
+        document.getElementById('scheduleContainer').innerHTML = '<p>Пожалуйста, выберите группу.</p>';
         return;
     }
 
-    const sqlPromise = initSqlJs({
-        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.wasm`
-    });
+    const SQL = await initSqlJs();
+    const databaseBytes = await loadDatabase();
+    const db = new SQL.Database(databaseBytes);
 
-    const dataPromise = fetch('schedule.db').then(res => res.arrayBuffer());
-
-    const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
-
-    const db = new SQL.Database(new Uint8Array(buf));
-    const stmt = db.prepare(`SELECT day, time, subject FROM schedule WHERE group_name = ?`);
+    const query = `SELECT * FROM schedule WHERE group_name = ? ORDER BY day, time`;
+    const stmt = db.prepare(query);
     stmt.bind([group]);
 
-    let scheduleHTML = '<table><tr><th>День</th><th>Время</th><th>Предмет</th></tr>';
+    let scheduleHtml = '<table><tr><th>День</th><th>Время</th><th>Предмет</th></tr>';
     while (stmt.step()) {
-        const row = stmt.get();
-        scheduleHTML += `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>`;
+        const row = stmt.getAsObject();
+        scheduleHtml += `<tr>
+                            <td>${row.day}</td>
+                            <td>${row.time}</td>
+                            <td>${row.subject}</td>
+                         </tr>`;
     }
-    scheduleHTML += '</table>';
+    scheduleHtml += '</table>';
 
-    scheduleContainer.innerHTML = scheduleHTML;
+    document.getElementById('scheduleContainer').innerHTML = scheduleHtml;
 }
