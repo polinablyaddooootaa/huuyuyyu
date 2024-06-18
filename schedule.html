@@ -7,8 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="schedule.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.js"></script>
-    <script defer src="schedule.js"></script>
 </head>
 <body>
     <header>
@@ -31,24 +29,24 @@
             <button id="logoutBtn" class="auth-btn" onclick="logout()">Выход</button>
         </div>
     </header>
-    <section class="main-content">
+
+    <main class="main-content">
         <div class="content-header">
-            <h1>Расписание</h1>
-            <p>fsd</p>
-        </div>
-        <div>
-            <label for="groupSelect">Выберите группу:</label>
-            <select id="groupSelect" onchange="loadSchedule()">
-                <option value="">--Выберите группу--</option>
-                <option value="group1">Группа 1</option>
-                <option value="group2">Группа 2</option>
-                <option value="group3">Группа 3</option>
+            <h1>Расписание для групп</h1>
+            <select id="groupSelector">
+                <option value="">Выберите группу</option>
+                <option value="Т-191">Т-191</option>
+                <option value="Т-211">Т-211</option>
+                <option value="Т-312">Т-312</option>
+                <option value="Т-311">Т-311</option>
             </select>
         </div>
         <div id="scheduleContainer"></div>
-    </section>
+    </main>
+
     <footer>
-        <p>Ваш успех — наша главная цель!</p>
+        © 2024 Stud & Book. Все права защищены.
     </footer>
+    <script src="schedule.js"></script>
 </body>
 </html>

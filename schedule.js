@@ -1,39 +1,50 @@
-async function initSqlJs() {
-    const SQL = await window.initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.wasm` });
-    return SQL;
-}
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const groupSelector = document.getElementById('groupSelector');
+    const scheduleContainer = document.getElementById('scheduleContainer');
 
-async function loadDatabase() {
-    const response = await fetch('schedule.db');
-    const buffer = await response.arrayBuffer();
-    return new Uint8Array(buffer);
-}
+    // Event listener for when the group selection changes
+    groupSelector.addEventListener('change', function() {
+        const selectedGroup = groupSelector.value;
 
-async function loadSchedule() {
-    const group = document.getElementById('groupSelect').value;
-    if (!group) {
-        document.getElementById('scheduleContainer').innerHTML = '<p>Пожалуйста, выберите группу.</p>';
-        return;
-    }
+        // Fetch the schedule data from schedule.txt
+        fetch('schedule.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Split the data by groups based on double new lines
+                const groupsData = data.split('\n\n');
 
-    const SQL = await initSqlJs();
-    const databaseBytes = await loadDatabase();
-    const db = new SQL.Database(databaseBytes);
+                // Find the schedule data for the selected group
+                let selectedGroupData = '';
+                for (let groupData of groupsData) {
+                    if (groupData.startsWith(selectedGroup)) {
+                        selectedGroupData = groupData.trim();
+                        break;
+                    }
+                }
 
-    const query = `SELECT * FROM schedule WHERE group_name = ? ORDER BY day, time`;
-    const stmt = db.prepare(query);
-    stmt.bind([group]);
+                // If data found for the selected group, generate the schedule HTML
+                if (selectedGroupData) {
+                    const scheduleLines = selectedGroupData.split('\n');
+                    let scheduleHTML = '<table>';
+                    scheduleLines.forEach(line => {
+                        scheduleHTML += '<tr>';
+                        const [day, subjects] = line.split(': ');
+                        scheduleHTML += `<th>${day}</th>`;
+                        scheduleHTML += `<td>${subjects}</td>`;
+                        scheduleHTML += '</tr>';
+                    });
+                    scheduleHTML += '</table>';
 
-    let scheduleHtml = '<table><tr><th>День</th><th>Время</th><th>Предмет</th></tr>';
-    while (stmt.step()) {
-        const row = stmt.getAsObject();
-        scheduleHtml += `<tr>
-                            <td>${row.day}</td>
-                            <td>${row.time}</td>
-                            <td>${row.subject}</td>
-                         </tr>`;
-    }
-    scheduleHtml += '</table>';
-
-    document.getElementById('scheduleContainer').innerHTML = scheduleHtml;
-}
+                    // Update the schedule container with the generated HTML
+                    scheduleContainer.innerHTML = scheduleHTML;
+                } else {
+                    scheduleContainer.innerHTML = '<p>Расписание не найдено для выбранной группы.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching schedule data:', error);
+                scheduleContainer.innerHTML = '<p>Ошибка загрузки данных расписания.</p>';
+            });
+    });
+});
