@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="notes.css">
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
         <div class="qq">
-            <img class="logo22" src="logo.png" alt="1">
+            <a href="index.html">
+                <img class="logo22" src="logo.png" alt="1">
+            </a>
             <div class="logo">Stud & Book</div>
         </div>
         <div class="gg">
@@ -21,8 +25,8 @@
             <a href="news.html"><button class="header1">Новости</button></a>
         </div>
         <div id="authButtons">
-            <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
-            <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+            <button id="loginBtn" class="auth-btn" onclick="redirectToHomeAndLogin()">Вход в аккаунт</button>
+            <button id="registerBtn" class="auth-btn" onclick="redirectToHomeAndRegister()">Регистрация</button>
         </div>
         <div id="userActions" style="display: none;">
             <span id="usernameDisplay"></span>
@@ -36,13 +40,24 @@
         
         <div id="note-form">
             <h3>Добавить новую заметку</h3>
-            <input type="text" id="note-title" placeholder="Заголовок" required>
-            <textarea id="note-content" placeholder="Содержание"></textarea>
+            <input type="text" id="note-title" placeholder="Заголовок (не более 15 символов)" maxlength="15" required>
+            <textarea id="note-content" placeholder="Содержание (не более 200 символов)" maxlength="200"></textarea>
             <button onclick="addNote()">Добавить</button>
+            <div id="error-msg" style="color: red; display: none;">Превышена допустимая длина заголовка или содержания!</div>
         </div>
     </div>
-    
+   
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editModal')">&times;</span>
+            <h3>Редактировать заметку</h3>
+            <input type="text" id="edit-note-title" placeholder="Заголовок (не более 15 символов)" maxlength="15" required>
+            <textarea id="edit-note-content" placeholder="Содержание (не более 200 символов)" maxlength="200"></textarea>
+            <button id="saveEditedNoteButton">Сохранить</button>
+        </div>
+    </div>
 
-    <script src="scripts.js"></script>
+
+    <script src="notes.js"></script>
 </body>
 </html>

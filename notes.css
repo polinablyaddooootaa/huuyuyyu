@@ -2,55 +2,143 @@ body {
     margin: 0;
     background: linear-gradient(to right, #00001A 20%, #00001A 40%, #1B0036 60%, #2D0050 80%, #58306b 100%, #67327f 100%);
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'DotGothic16', sans-serif;
     margin: 20px;
 }
 
-.note {
+.notesblocks {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start; 
+    gap: 20px;
+    padding: 20px; 
+}
+
+#notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+    gap: 20px;
+}
+
+#note-form {
+    background-color: #1b0036;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#note-form h3 {
+    font-size: 1.5em;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.title {
-    background-color: #000000;
-    padding: 10px;
-    cursor: pointer;
-    margin: 0;
-}
-
-.content {
-    display: none;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-
-.close {
+    text-align: center;
+    font-family: 'Montserrat';
     color: #fff;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: rgb(180, 178, 178);
-    text-decoration: none;
+#note-form input,
+#note-form textarea {
+    width: 580px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#note-form textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+#note-form button {
+    width: 600px;
+    padding: 10px;
+    background-color: #ff00fb;
+    color: white;
+    font-family: 'Montserrat';
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#saveEditedNoteButton{
+    background-color: #ff00fb;
+    color: white;
+    border-radius: 30px;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+.note {
+    position: relative;
+    background-color: #1b0036;
+    padding: 15px;
+    
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add margin to separate notes */
+}
+
+.note .title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.note .content {
+    color: #ccc;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.note .actions {
+    display: none; /* Initially hide actions */
+    margin-top: 10px; /* Add space between content and actions */
+}
+
+.note.open .actions {
+    display: block; /* Show actions when note is open */
+}
+
+.note .actions button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.note .actions .edit {
+    background-color: #ff00fb;
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.note .actions .delete {
+    background-color: #dc3545;
+    font-family: 'Montserrat';
+    color: white;
+}
+
+.note .actions .save {
+    background-color: #28a745;
+    font-family: 'Montserrat';
+    color: white;
+}
+
+.note .actions .cancel {
+    background-color: #6c757d;
+    color: white;
 }
 
 .logo22 {
@@ -106,75 +194,119 @@ header .auth-btn {
     border-radius: 5px;
     font-size: 16px;
 }
+#note-title,
+#note-content {
+    font-family: 'Montserrat', sans-serif;
+}
 
 header .auth-btn:hover {
     transform: scale(1.05);
     transition: transform 0.2s;
 }
 
-#note-form {
-    margin-top: 20px;
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-#note-form input, #note-form textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#note-form button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
+.close:hover,
+.close:focus {
+    color: rgb(180, 178, 178);
+    text-decoration: none;
     cursor: pointer;
 }
-
-#note-form button:hover {
-    background-color: #218838;
+.note.open .actions {
+    display: block; /* Показываем кнопки после клика на заголовок */
 }
-
-.note .actions {
-    margin-top: 10px;
-}
-
 .note .actions button {
     padding: 5px 10px;
-    margin-right: 5px;
+    margin-left: 5px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
 }
 
-.note .actions .edit {
-    background-color: #ffc107;
+.note .content {
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 0.9em;
+    font-family: 'Montserrat';
+    display: none; /* Изначально скрытое содержимое заметки */
 }
 
-.note .actions .delete {
-    background-color: #dc3545;
-    color: white;
+.note.open .content {
+    font-family: 'Montserrat';
+    display: block; /* Показываем содержимое после клика */
 }
-
-.note .actions .save {
-    background-color: #28a745;
-    color: white;
-}
-
-.note .actions .cancel {
-    background-color: #6c757d;
-    color: white;
-}
-
-.notesblocks {
-    display: flex;
-    justify-content: space-evenly;
+/* CSS for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+    overflow: auto;
+    justify-content: center;
     align-items: center;
 }
 
-#notes-container {
+.modal-content {
+    background-color: #1b0036;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    position: relative;
+    gap: 10px;
     display: flex;
     flex-direction: column;
+}
+
+/* Close button style */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+#edit-note-title{
+    width: 580px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#edit-note-content{
+    width: 580px;
+    max-width: 580px;
+    min-width: 580px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

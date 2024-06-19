@@ -15,34 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = 'block';
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-    }
-
-    function redirectToHomeAndRegister() {
-        sessionStorage.setItem('action', 'register');
-        window.location.href = 'index.html';
-    }
-
-    function redirectToHomeAndLogin() {
-        sessionStorage.setItem('action', 'login');
-        window.location.href = 'index.html';
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const action = sessionStorage.getItem('action');
-        if (action === 'register') {
-            openModal('registerModal');
-        } else if (action === 'login') {
-            openModal('loginModal');
-        }
-        sessionStorage.removeItem('action');
-    });
-
 
 function loadNotes(username) {
     const notesContainer = document.getElementById('notes-container');
@@ -56,7 +28,87 @@ function loadNotes(username) {
         notesContainer.appendChild(noteElement);
     });
 }
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
 
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function redirectToHomeAndRegister() {
+    sessionStorage.setItem('action', 'register');
+    window.location.href = 'index.html';
+}
+
+function redirectToHomeAndLogin() {
+    sessionStorage.setItem('action', 'login');
+    window.location.href = 'index.html';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const action = sessionStorage.getItem('action');
+    if (action === 'register') {
+        openModal('registerModal');
+    } else if (action === 'login') {
+        openModal('loginModal');
+    }
+    sessionStorage.removeItem('action');
+});
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function redirectToHomeAndRegister() {
+    sessionStorage.setItem('action', 'register');
+    window.location.href = 'index.html';
+}
+
+function redirectToHomeAndLogin() {
+    sessionStorage.setItem('action', 'login');
+    window.location.href = 'index.html';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const action = sessionStorage.getItem('action');
+    if (action === 'register') {
+        openModal('registerModal');
+    } else if (action === 'login') {
+        openModal('loginModal');
+    }
+    sessionStorage.removeItem('action');
+});
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+    }
+    
+    function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    }
+    
+    function redirectToHomeAndRegister() {
+    sessionStorage.setItem('action', 'register');
+    window.location.href = 'index.html';
+    }
+    
+    function redirectToHomeAndLogin() {
+    sessionStorage.setItem('action', 'login');
+    window.location.href = 'index.html';
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    const action = sessionStorage.getItem('action');
+    if (action === 'register') {
+    openModal('registerModal');
+    } else if (action === 'login') {
+    openModal('loginModal');
+    }
+    sessionStorage.removeItem('action');
+    });
 function createNoteElement(note, index) {
     const noteDiv = document.createElement('div');
     noteDiv.classList.add('note');
@@ -65,6 +117,7 @@ function createNoteElement(note, index) {
     title.classList.add('title');
     title.textContent = note.title;
     title.addEventListener('click', function() {
+        // Переключаем класс .open у родительского элемента заметки
         noteDiv.classList.toggle('open');
     });
 
@@ -86,48 +139,65 @@ function createNoteElement(note, index) {
     return noteDiv;
 }
 
+
+
+// Function to open edit modal and populate with note data
 function editNote(index) {
     const currentUser = localStorage.getItem('currentUser');
     const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
     const note = notes[index];
 
-    const titleInput = document.getElementById('note-title');
-    const contentInput = document.getElementById('note-content');
+    const modal = document.getElementById('editModal');
+    const titleInput = modal.querySelector('#edit-note-title');
+    const contentInput = modal.querySelector('#edit-note-content');
 
     titleInput.value = note.title;
     contentInput.value = note.content.replace(/<\/?p>/g, '\n').trim();
 
-    const addButton = document.querySelector('#note-form button');
-    addButton.textContent = 'Сохранить';
-    addButton.onclick = function() {
+    // Save button in modal will save changes
+    const saveButton = modal.querySelector('#saveEditedNoteButton');
+    saveButton.onclick = function() {
         saveEditedNote(index);
+        closeModal('editModal');
     };
+
+    openModal('editModal');
 }
 
+// Function to save edited note
 function saveEditedNote(index) {
     const currentUser = localStorage.getItem('currentUser');
-    const titleInput = document.getElementById('note-title');
-    const contentInput = document.getElementById('note-content');
-
     const notes = JSON.parse(localStorage.getItem(`notes_${currentUser}`)) || [];
+    const titleInput = document.getElementById('edit-note-title');
+    const contentInput = document.getElementById('edit-note-content');
 
     notes[index] = {
         title: titleInput.value,
-        content: `<p>${
-    contentInput.value.replace(/\n/g, '</p><p>')}</p>`
+        content: `<p>${contentInput.value.replace(/\n/g, '</p><p>')}</p>`
     };
 
     localStorage.setItem(`notes_${currentUser}`, JSON.stringify(notes));
-
     loadNotes(currentUser);
-
-    titleInput.value = '';
-    contentInput.value = '';
-
-    const addButton = document.querySelector('#note-form button');
-    addButton.textContent = 'Добавить';
-    addButton.onclick = addNote;
 }
+
+// Function to open modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+// Function to close modal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Initial load and other functions remain unchanged
+
 
 function deleteNote(index) {
     const currentUser = localStorage.getItem('currentUser');
@@ -169,12 +239,6 @@ function register() {
     const username = document.getElementById('registerUsername').value;
     const password = document.getElementById('registerPassword').value;
 
-    // Проверка имени пользователя на английские буквы и минимальную длину
-    if (!/^[a-zA-Z0-9]{6,}$/.test(username)) {
-        alert('Имя пользователя должно состоять только из английских букв и цифр и быть не менее 6 символов.');
-        return;
-    }
-
     if (localStorage.getItem(username)) {
         alert('Пользователь уже существует.');
         return;
@@ -188,12 +252,6 @@ function register() {
 function login() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
-
-    // Проверка имени пользователя на английские буквы и минимальную длину
-    if (!/^[a-zA-Z0-9]{6,}$/.test(username)) {
-        alert('Имя пользователя должно состоять только из английских букв и цифр и быть не менее 6 символов.');
-        return;
-    }
 
     const user = JSON.parse(localStorage.getItem(username));
 
@@ -214,7 +272,6 @@ function login() {
         alert('Неправильное имя пользователя или пароль.');
     }
 }
-
 
 function logout() {
     localStorage.removeItem('currentUser');

@@ -42,7 +42,7 @@
             <div class="intro">
                 <h1>STUD & BOOK</h1> <div class="wrapper"> <p class="typing-demo"> сайт - помощник для студентов</p></div>
                 
-                <button class="join-btn">Присоединиться</button>
+                <button class="join-btn" onclick="openModal('registerModal')">Присоединиться</button>
             </div>
         </div>
         <div class="center">
@@ -86,18 +86,14 @@
             <div>
                 <p class="footertext">Этот сайт создан студентами для студентов, и мы гордимся тем, что можем помочь вам в достижении ваших образовательных и профессиональных целей. Присоединяйтесь к нашему сообществу и давайте вместе строить успешное будущее!</p>
             </div>
-            <button class="join-btn">Присоединиться</button>
+            <button class="join-btn" onclick="openModal('registerModal')">Присоединиться</button>
             <p class="footertext2">Ваш успех — наша главная цель!</p>
         </footer>
     </div>
-    <div id="authButtons">
-        <button id="logoutBtn" class="auth-btn" style="display: none;" onclick="logout()">Выход</button>
-        <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
-        <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
-    </div>
+
     <div id="welcomeMessage" style="display: none;">Добро пожаловать, <span id="usernameDisplay"></span>!</div>
 
-    <!-- Registration Modal -->
+
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('registerModal')">&times;</span>
@@ -110,7 +106,7 @@
         </div>
     </div>
 
-    <!-- Login Modal -->
+  
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>

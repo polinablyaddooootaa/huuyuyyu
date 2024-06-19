@@ -11,7 +11,9 @@
 <body>
     <header>
         <div class="qq">
-            <img class="logo22" src="logo.png" alt="1">
+            <a href="index.html">
+                <img class="logo22" src="logo.png" alt="1">
+            </a>
             <div class="logo">Stud & Book</div>
         </div>
         <div class="gg">
@@ -21,8 +23,9 @@
             <a href="news.html"><button class="header1">Новости</button></a>
         </div>
         <div id="authButtons">
-            <button id="loginBtn" class="auth-btn" onclick="openModal('loginModal')">Вход в аккаунт</button>
-            <button id="registerBtn" class="auth-btn" onclick="openModal('registerModal')">Регистрация</button>
+            <button id="loginBtn" class="auth-btn" onclick="redirectToHomeAndLogin()">Вход в аккаунт</button>
+            <button id="registerBtn" class="auth-btn" onclick="redirectToHomeAndRegister()">Регистрация</button>
+            
         </div>
         <div id="userActions" style="display: none;">
             <span id="usernameDisplay"></span>
@@ -32,62 +35,68 @@
     <section class="main-content">
         <div class="content-header">
             <h1>Новости</h1>
-            <p>Последние обновления и события</p>
+        <div>  <div class="wrapper"> <p class="typing-demo"> последние новости и обновления</div>
         </div>
         <div class="news-content">
             <div class="photo-grid">
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 1">
-                    <p>Подпись 1</p>
+                    <img src="1.jpg" alt="Фото 1">
+                    <p>5 июня  2024 года в рамках проведения декады кибербезопасности в Брестском филиале ЧУО «Колледж бизнеса и права» состоялась встреча учащихся группы Т-312.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 2">
-                    <p>Подпись 2</p>
+                    <img src="2.jpg" alt="Фото 2">
+                    <p>31 мая 2024 года в Брестском филиале ЧУО "Колледж бизнеса и права" состоялось вручение дипломов выпускникам заочной формы получения образования специальностей "Правоведение" и "Экономика и организация производства".</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 3">
-                    <p>Подпись 3</p>
+                    <img src="3.jpg" alt="Фото 3">
+                    <p>1 июня 2024 года учащиеся групп П-311, П-312 и Т-312 Брестского филиала ЧУО «Колледж бизнеса и права» совместно с  администрацией Ленинского района г. Бреста и Департаментом охраны Ленинского района.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 4">
-                    <p>Подпись 4</p>
+                    <img src="6.jpg" alt="Фото 4">
+                    <p>28 мая 2024 года в Брестском филиале ЧУО «Колледж бизнеса и права» состоялась встреча учащихся группы П-391 с участковым инспектором инспекции по делам несовершеннолетних отдела.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 5">
-                    <p>Подпись 5</p>
+                    <img src="5.jpg" alt="Фото 5">
+                    <p>В рамках мероприятий,  приуроченных к Всемирному дню без табака, прошла встреча учащихся групп П-392 и Т-392 с врачом Брестского областного центра гигиены.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 6">
-                    <p>Подпись 6</p>
+                    <img src="6.jpg" alt="Фото 6">
+                    <p>Учащиеся группы П-291 приняли участие во встрече с делегатами VII Всебелорусского народного собрания.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 7">
-                    <p>Подпись 7</p>
+                    <img src="7.jpg" alt="Фото 7">
+                    <p>23 мая 2024 г. учащиеся гр. П-311 специальности "Правоведение" в рамках изучения предмета "Уголовное право" посетили заседание суда Московского района г. Бреста.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 8">
-                    <p>Подпись 8</p>
+                    <img src="11.jpg" alt="Фото 8">
+                    <p>Учащиеся группы Т-211 приняли участие в акции, приуроченной  к Международному дню памяти умерших от СПИДа,</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 9">
-                    <p>Подпись 9</p>
+                    <img src="9.jpg" alt="Фото 9">
+                    <p>21 мая 2024 года, в рамках круглогодичной спартакиады филиала колледжа, прошло первенство по весеннему легкоатлетическому кроссу.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 10">
-                    <p>Подпись 10</p>
+                    <img src="10.jpg" alt="Фото 10">
+                    <p>20 мая 2024 года в Брестском филиале ЧУО «Колледж бизнеса и права» прошла встреча учащихся группы Л-391 со священником храма Рождества Христова в городе Бресте.</p>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/150" alt="Фото 11">
-                    <p>Подпись 11</p>
+                    <img src="12.jpg" alt="Фото 11">
+                    <p>Конференция по итогам прохождения технологической и преддипломной практик учащимися 4 курса групп Т-111, Т-091.</p>
                 </div>
                 <div class="photo-item">
                     <img src="https://brest.kbp.by/wp-content/uploads/2024/06/image1-3.jpeg" alt="Фото 12">
-                    <p>Подпись 12</p>
+                    <p>1 июня 2024 года учащиеся групп П-311, П-312 и Т-312 Брестского филиала ЧУО «Колледж бизнеса и права» совместно с  администрацией Ленинского района г. Бреста и Департаментом охраны Ленинского района.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="scripts.js"></script>
+    <div class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" src="" alt="">
+        <div class="modal-caption"></div>
+    </div>
+
+    <script src="news.js"></script>
 </body>
 </html>
