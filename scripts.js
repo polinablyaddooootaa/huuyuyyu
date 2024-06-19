@@ -56,6 +56,13 @@ function loadNotes(username) {
         notesContainer.appendChild(noteElement);
     });
 }
+function scrollToInfo() {
+    const infoSection = document.getElementById('infoSection');
+    if (infoSection) {
+        infoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 
 function createNoteElement(note, index) {
     const noteDiv = document.createElement('div');
